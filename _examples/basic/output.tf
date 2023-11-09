@@ -14,12 +14,12 @@ output "location" {
 }
 
 output "vnet_id" {
-  value       = module.vnet.vnet_id
+  value       = module.vnet.id
   description = "The virtual NetworkConfiguration ID."
 }
 
 output "vnet_name" {
-  value       = module.vnet.vnet_name
+  value       = module.vnet.name
   description = "The name of the virtual network. Changing this forces a new resource to be created."
 }
 
