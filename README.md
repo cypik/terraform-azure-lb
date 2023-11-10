@@ -13,7 +13,7 @@ This Terraform configuration defines an Azure infrastructure using the Azure pro
 - [License](#license)
 
 ## Introduction
-This repository contains Terraform code to deploy resources on Microsoft Azure, including a resource group and a virtual network and flexible-mysql.
+This repository contains Terraform code to deploy resources on Microsoft Azure, including a resource group and a virtual network and load-balancer.
 
 ## Usage
 To use this module, you should have Terraform installed and configured for AZURE. This module provides the necessary Terraform configuration
