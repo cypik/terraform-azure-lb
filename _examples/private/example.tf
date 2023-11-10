@@ -3,14 +3,14 @@ provider "azurerm" {
 }
 
 module "resource_group" {
-  source      = "git::git@github.com:opz0/terraform-azure-resource-group.git?ref=master"
+  source      = "git::https://github.com/opz0/terraform-azure-resource-group.git?ref=v1.0.0"
   name        = "appvm-private"
   environment = "tested"
   location    = "North Europe"
 }
 
 module "vnet" {
-  source              = "git::git@github.com:opz0/terraform-azure-vnet.git?ref=master"
+  source              = "git::https://github.com/opz0/terraform-azure-vnet.git?ref=v1.0.0"
   name                = "app"
   environment         = "test"
   resource_group_name = module.resource_group.resource_group_name
@@ -19,13 +19,13 @@ module "vnet" {
 }
 
 module "subnet" {
-  source = "git::git@github.com:opz0/terraform-azure-subnet.git?ref=master"
+  source = "git::https://github.com/opz0/terraform-azure-subnet.git?ref=v1.0.0"
 
   name                 = "app"
   environment          = "test"
   resource_group_name  = module.resource_group.resource_group_name
   location             = module.resource_group.resource_group_location
-  virtual_network_name = module.vnet.vnet_name[0]
+  virtual_network_name = module.vnet.name
 
   #subnet
   subnet_names    = ["subnet2"]
@@ -46,29 +46,23 @@ module "subnet" {
 
 module "load-balancer" {
   source = "../.."
-
-  #   Labels
+  #Labels
   name        = "app"
   environment = "test"
-
-  #   Common
+  #Common
   enabled             = true
   resource_group_name = module.resource_group.resource_group_name
   location            = module.resource_group.resource_group_location
-
   # Load Balancer
   frontend_name                          = "mypublicIP"
   frontend_private_ip_address_allocation = "Static"
   frontend_private_ip_address            = "10.0.1.6"
   lb_sku                                 = "Standard"
   frontend_subnet_id                     = module.subnet.default_subnet_id
-
-
   # Backend Pool
   is_enable_backend_pool = false
   # network_interaface_id_association = ""
   # ip_configuration_name_association = ""
-
   remote_port = {
     ssh   = ["Tcp", "22"]
     https = ["Tcp", "80"]
