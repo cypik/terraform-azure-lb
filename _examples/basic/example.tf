@@ -3,14 +3,16 @@ provider "azurerm" {
 }
 
 module "resource_group" {
-  source      = "git::https://github.com/cypik/terraform-azure-resource-group.git?ref=v1.0.0"
+  source      = "cypik/resource-group/azure"
+  version     = "1.0.1"
   name        = "load-basic"
   environment = "tested"
   location    = "North Europe"
 }
 
 module "vnet" {
-  source              = "git::https://github.com/cypik/terraform-azure-vnet.git?ref=v1.0.0"
+  source              = "cypik/vnet/azure"
+  version             = "1.0.1"
   name                = "app"
   environment         = "test"
   resource_group_name = module.resource_group.resource_group_name
@@ -19,8 +21,8 @@ module "vnet" {
 }
 
 module "subnet" {
-  source = "git::https://github.com/cypik/terraform-azure-subnet.git?ref=v1.0.0"
-
+  source               = "cypik/subnet/azure"
+  version              = "1.0.1"
   name                 = "app"
   environment          = "test"
   resource_group_name  = module.resource_group.resource_group_name
@@ -44,7 +46,8 @@ module "subnet" {
 }
 
 module "network_security_group" {
-  source                  = "git::https://github.com/cypik/terraform-azure-network-security-group.git?ref=v1.0.0"
+  source                  = "cypik/network-security-group/azure"
+  version                 = "1.0.1"
   name                    = "app"
   environment             = "test"
   resource_group_name     = module.resource_group.resource_group_name
@@ -77,15 +80,16 @@ module "network_security_group" {
 }
 
 module "virtual-machine" {
-  source = "git::https://github.com/cypik/terraform-azure-virtual-machine.git?ref=v1.0.0"
+  source  = "cypik/virtual-machine/azure"
+  version = "1.0.1"
   #Tags
-  name        = "app"
+  name        = "app1"
   environment = "test"
   label_order = ["environment", "name"]
   #Common
   is_vm_linux                     = true
   enabled                         = true
-  machine_count                   = 2
+  machine_count                   = 1
   resource_group_name             = module.resource_group.resource_group_name
   location                        = module.resource_group.resource_group_location
   disable_password_authentication = true
@@ -103,7 +107,7 @@ module "virtual-machine" {
   ip_version        = "IPv4"
   #Virtual Machine
   vm_size        = "Standard_B1s"
-  public_key     = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxjbEUEcCShV2TGdFA2cydWwR1G1/n7DM61+EFHLSc= arjun@arjun"
+  public_key     = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
   admin_username = "ubuntu"
   # admin_password                = "P@ssw0rd!123!" # It is compulsory when disable_password_authentication = false
   caching                         = "ReadWrite"
