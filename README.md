@@ -172,9 +172,9 @@ Replace **MIT** and **Cypik** with the appropriate license and your information.
 
 ## Providers
 
-| Name | Version    |
-|------|------------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >= 4.2.0 |
+| Name | Version  |
+|------|----------|
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >= 4.6.0 |
 
 ## Modules
 
