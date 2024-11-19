@@ -4,7 +4,7 @@ provider "azurerm" {
 
 module "resource_group" {
   source      = "cypik/resource-group/azure"
-  version     = "1.0.1"
+  version     = "1.0.2"
   name        = "load-basic"
   environment = "tested"
   location    = "North Europe"
@@ -12,7 +12,7 @@ module "resource_group" {
 
 module "vnet" {
   source              = "cypik/vnet/azure"
-  version             = "1.0.1"
+  version             = "1.0.2"
   name                = "app"
   environment         = "test"
   resource_group_name = module.resource_group.resource_group_name
@@ -22,7 +22,7 @@ module "vnet" {
 
 module "subnet" {
   source               = "cypik/subnet/azure"
-  version              = "1.0.1"
+  version              = "1.0.2"
   name                 = "app"
   environment          = "test"
   resource_group_name  = module.resource_group.resource_group_name
@@ -47,7 +47,7 @@ module "subnet" {
 
 module "network_security_group" {
   source                  = "cypik/network-security-group/azure"
-  version                 = "1.0.1"
+  version                 = "1.0.2"
   name                    = "app"
   environment             = "test"
   resource_group_name     = module.resource_group.resource_group_name
@@ -81,7 +81,7 @@ module "network_security_group" {
 
 module "virtual-machine" {
   source  = "cypik/virtual-machine/azure"
-  version = "1.0.1"
+  version = "1.0.2"
   #Tags
   name        = "app1"
   environment = "test"
@@ -107,7 +107,7 @@ module "virtual-machine" {
   ip_version        = "IPv4"
   #Virtual Machine
   vm_size        = "Standard_B1s"
-  public_key     = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  public_key     = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
   admin_username = "ubuntu"
   # admin_password                = "P@ssw0rd!123!" # It is compulsory when disable_password_authentication = false
   caching                         = "ReadWrite"
