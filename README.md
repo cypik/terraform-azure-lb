@@ -26,7 +26,7 @@ for creating AZURE resources, and you can customize the inputs as needed. Below 
 ```hcl
 module "basic-load-balancer" {
   source              = "cypik/load-balancer/azure"
-  version             = "1.0.1"
+  version             = "1.0.2"
   #Labels
   name                = "app"
   environment         = "test"
@@ -70,7 +70,7 @@ module "basic-load-balancer" {
 ```hcl
 module "private-load-balancer" {
   source                                = "cypik/load-balancer/azure"
-  version                               = "1.0.1"
+  version                               = "1.0.2"
   #Labels
   name                                  = "app"
   environment                           = "test"
@@ -109,7 +109,7 @@ module "private-load-balancer" {
 ```hcl
 module "public-load-balancer" {
   source                            = "cypik/load-balancer/azure"
-  version                           = "1.0.1"
+  version                           = "1.0.2"
   #Labels
   name                              = "app"
   environment                       =  "test"
@@ -167,20 +167,20 @@ Replace **MIT** and **Cypik** with the appropriate license and your information.
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.6.6 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >=3.87.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9.5 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 4.2.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >=3.87.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >= 4.2.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_labels"></a> [labels](#module\_labels) | cypik/labels/azure | 1.0.1 |
+| <a name="module_labels"></a> [labels](#module\_labels) | cypik/labels/azure | 1.0.2 |
 
 ## Resources
 
@@ -224,7 +224,7 @@ Replace **MIT** and **Cypik** with the appropriate license and your information.
 | <a name="input_lb_probe_unhealthy_threshold"></a> [lb\_probe\_unhealthy\_threshold](#input\_lb\_probe\_unhealthy\_threshold) | Number of times the load balancer health probe has an unsuccessful attempt before considering the endpoint unhealthy. | `number` | `2` | no |
 | <a name="input_lb_sku"></a> [lb\_sku](#input\_lb\_sku) | (Optional) The SKU of the Azure Load Balancer. Accepted values are Basic and Standard. | `string` | `"Basic"` | no |
 | <a name="input_location"></a> [location](#input\_location) | Location where resource should be created. | `string` | `""` | no |
-| <a name="input_managedby"></a> [managedby](#input\_managedby) | ManagedBy, eg 'cypik | `string` | `"cypik"` | no |
+| <a name="input_managedby"></a> [managedby](#input\_managedby) | ManagedBy, eg 'info@cypik.com' | `string` | `"info@cypik.com"` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name  (e.g. `app` or `cluster`). | `string` | `""` | no |
 | <a name="input_nat_protocol"></a> [nat\_protocol](#input\_nat\_protocol) | (Required) The protocol of Load Balancer's NAT rule. | `string` | `"Tcp"` | no |
 | <a name="input_network_interaface_id_association"></a> [network\_interaface\_id\_association](#input\_network\_interaface\_id\_association) | (Required) Network Interaface id for Network Interface Association with Load Balancer. | `list(string)` | `[]` | no |
