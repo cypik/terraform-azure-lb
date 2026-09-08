@@ -1,7 +1,7 @@
 
 module "labels" {
   source      = "cypik/labels/azure"
-  version     = "1.0.2"
+  version     = "1.0.3"
   name        = var.name
   environment = var.environment
   managedby   = var.managedby
@@ -101,7 +101,7 @@ resource "azurerm_lb_rule" "load-balancer" {
   name                           = element(keys(var.lb_port), count.index)
   protocol                       = element(var.lb_port[element(keys(var.lb_port), count.index)], 1)
   backend_address_pool_ids       = [azurerm_lb_backend_address_pool.load-balancer.id]
-  enable_floating_ip             = false
+  floating_ip_enabled            = false
   idle_timeout_in_minutes        = 5
   probe_id                       = element(azurerm_lb_probe.load-balancer[*].id, count.index)
 }
