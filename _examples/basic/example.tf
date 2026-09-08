@@ -4,7 +4,7 @@ provider "azurerm" {
 
 module "resource_group" {
   source      = "cypik/resource-group/azure"
-  version     = "1.0.2"
+  version     = "1.0.3"
   name        = "load-basic"
   environment = "tested"
   location    = "North Europe"
@@ -12,7 +12,7 @@ module "resource_group" {
 
 module "vnet" {
   source              = "cypik/vnet/azure"
-  version             = "1.0.2"
+  version             = "1.0.3"
   name                = "app"
   environment         = "test"
   resource_group_name = module.resource_group.resource_group_name
@@ -22,7 +22,7 @@ module "vnet" {
 
 module "subnet" {
   source               = "cypik/subnet/azure"
-  version              = "1.0.2"
+  version              = "1.0.3"
   name                 = "app"
   environment          = "test"
   resource_group_name  = module.resource_group.resource_group_name
@@ -47,7 +47,7 @@ module "subnet" {
 
 module "network_security_group" {
   source                  = "cypik/network-security-group/azure"
-  version                 = "1.0.2"
+  version                 = "1.0.3"
   name                    = "app"
   environment             = "test"
   resource_group_name     = module.resource_group.resource_group_name
@@ -81,7 +81,7 @@ module "network_security_group" {
 
 module "virtual-machine" {
   source  = "cypik/virtual-machine/azure"
-  version = "1.0.2"
+  version = "1.0.3"
   #Tags
   name        = "app1"
   environment = "test"
@@ -107,7 +107,7 @@ module "virtual-machine" {
   ip_version        = "IPv4"
   #Virtual Machine
   vm_size        = "Standard_B1s"
-  public_key     = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  public_key     = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC/ojlxYKi7su/Pz2yTs0ZNI9c3qMNy+Cm5kufmDmziyU57rl84n2IE2NK+sdqYYXk+XNLiIhkwI6CVCnd2W1RYlGWxp340ZK65GFi6dpYvcU4anD1PTX5hYCf8P5yzpA5g7UOM4nWffkLy7k19DLenBwnaKqYPYH/saFlK9l4aNoJ27nLw7dXvR1hQuTPCfUFT1KAuAh7hsfy7nQL0UeK3OT3YFGifFiopfgZBFtcVdMfDYBroiRZ8NQWb39V1J6zHpMe2jtqccvrWa5WV90AP9JFWz6NvwA9jnnHmz6V4A6GucnKOkNefARvSXzo3xua6aAoYNdyMZpu6MzcEsmYQ/D5Gvfd4Drk8ZRFXDBAy8wnQvj2awcdIu0qtWWiB8SDLzBjYFLbG7sn68Ac/rLOLdTzXZSAVHbvirNRQygiLCUgLftEqImGVftufF20bMDnBg+r2taWOtXMNyBVdK26aza2XNTbZMjuJLgrEir7QOlwcLwMn4R+Bcld1GcAj27Xlsk0IVRmTj3nopL96pT2U4/QYL8Q+pmHTuomyIhznptKTegeCWE+sDkWZzbisgUaiacc2r6xWf6pUEEMHThoR9XT/5kW49oBT36Jja+2vFT1XqRJrUZRPPZ/rLeehyio35fuOs+rsPjW7chgrSkJN2ILuklFfnNqUMh7kZ7LnzQ== terraform-example"
   admin_username = "ubuntu"
   # admin_password                = "P@ssw0rd!123!" # It is compulsory when disable_password_authentication = false
   caching                         = "ReadWrite"
@@ -160,11 +160,11 @@ module "load-balancer" {
   location            = module.resource_group.resource_group_location
   #Load Balancer
   frontend_name = "mypublicIP"
-  lb_sku        = "Basic"
+  lb_sku        = "Standard"
   # Public IP
   ip_count          = 1
   allocation_method = "Static"
-  sku               = "Basic"
+  sku               = "Standard"
   nat_protocol      = "Tcp"
   public_ip_enabled = true
   ip_version        = "IPv4"

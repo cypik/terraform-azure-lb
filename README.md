@@ -26,7 +26,7 @@ for creating AZURE resources, and you can customize the inputs as needed. Below 
 ```hcl
 module "basic-load-balancer" {
   source              = "cypik/load-balancer/azure"
-  version             = "1.0.2"
+  version             = "1.0.3"
   #Labels
   name                = "app"
   environment         = "test"
@@ -36,11 +36,11 @@ module "basic-load-balancer" {
   location            = module.resource_group.resource_group_location
   #Load Balancer
   frontend_name       = "mypublicIP"
-  lb_sku              = "Basic"
+  lb_sku              = "Standard"
   # Public IP
   ip_count            = 1
   allocation_method   = "Static"
-  sku                 = "Basic"
+  sku                 = "Standard"
   nat_protocol        = "Tcp"
   public_ip_enabled   = true
   ip_version          = "IPv4"
@@ -70,7 +70,7 @@ module "basic-load-balancer" {
 ```hcl
 module "private-load-balancer" {
   source                                = "cypik/load-balancer/azure"
-  version                               = "1.0.2"
+  version                               = "1.0.3"
   #Labels
   name                                  = "app"
   environment                           = "test"
@@ -109,7 +109,7 @@ module "private-load-balancer" {
 ```hcl
 module "public-load-balancer" {
   source                            = "cypik/load-balancer/azure"
-  version                           = "1.0.2"
+  version                           = "1.0.3"
   #Labels
   name                              = "app"
   environment                       =  "test"
@@ -167,20 +167,20 @@ Replace **MIT** and **Cypik** with the appropriate license and your information.
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9.5 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 4.2.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.15.8 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 5.4.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >= 4.2.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | >= 5.4.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_labels"></a> [labels](#module\_labels) | cypik/labels/azure | 1.0.2 |
+| <a name="module_labels"></a> [labels](#module\_labels) | cypik/labels/azure | 1.0.3 |
 
 ## Resources
 
@@ -222,7 +222,7 @@ Replace **MIT** and **Cypik** with the appropriate license and your information.
 | <a name="input_lb_probe"></a> [lb\_probe](#input\_lb\_probe) | (Optional) Protocols to be used for lb health probes. Format as [protocol, port, request\_path] | `map(any)` | `{}` | no |
 | <a name="input_lb_probe_interval"></a> [lb\_probe\_interval](#input\_lb\_probe\_interval) | Interval in seconds the load balancer health probe rule does a check | `number` | `5` | no |
 | <a name="input_lb_probe_unhealthy_threshold"></a> [lb\_probe\_unhealthy\_threshold](#input\_lb\_probe\_unhealthy\_threshold) | Number of times the load balancer health probe has an unsuccessful attempt before considering the endpoint unhealthy. | `number` | `2` | no |
-| <a name="input_lb_sku"></a> [lb\_sku](#input\_lb\_sku) | (Optional) The SKU of the Azure Load Balancer. Accepted values are Basic and Standard. | `string` | `"Basic"` | no |
+| <a name="input_lb_sku"></a> [lb\_sku](#input\_lb\_sku) | (Optional) The SKU of the Azure Load Balancer. Accepted values are Basic and Standard. | `string` | `"Standard"` | no |
 | <a name="input_location"></a> [location](#input\_location) | Location where resource should be created. | `string` | `""` | no |
 | <a name="input_managedby"></a> [managedby](#input\_managedby) | ManagedBy, eg 'info@cypik.com' | `string` | `"info@cypik.com"` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name  (e.g. `app` or `cluster`). | `string` | `""` | no |
@@ -235,7 +235,7 @@ Replace **MIT** and **Cypik** with the appropriate license and your information.
 | <a name="input_repository"></a> [repository](#input\_repository) | Terraform current module repo | `string` | `"https://github.com/cypik/terraform-azure-lb"` | no |
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | The name of the resource group in which to create the virtual network. | `string` | `""` | no |
 | <a name="input_reverse_fqdn"></a> [reverse\_fqdn](#input\_reverse\_fqdn) | A fully qualified domain name that resolves to this public IP address. If the reverseFqdn is specified, then a PTR DNS record is created pointing from the IP address in the in-addr.arpa domain to the reverse FQDN. | `string` | `""` | no |
-| <a name="input_sku"></a> [sku](#input\_sku) | The SKU of the Public IP. Accepted values are Basic and Standard. Defaults to Basic. | `string` | `"Basic"` | no |
+| <a name="input_sku"></a> [sku](#input\_sku) | The SKU of the Public IP. Accepted values are Basic and Standard. Defaults to Standard. | `string` | `"Standard"` | no |
 | <a name="input_update"></a> [update](#input\_update) | Used when updating the Resource Group. | `string` | `"60m"` | no |
 | <a name="input_zones"></a> [zones](#input\_zones) | A collection containing the availability zone to allocate the Public IP in. | `list(any)` | `null` | no |
 
